@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./sp/oth_css/reset.css">
+    <link rel="stylesheet" href="./sp/kgm_css/kgm_.css">
+    <script src="./sp/oth_js/jquery/jquery-3.5.1.js"></script>
+    <script src="./sp/kgm_js/kgm_js.js"></script>
+    <style>
+        #content{
+            width: 100%;
+            display: flex;
+            top: 0;
+            left: 0;
+            border: 1px solid red;
+            }
+        #_bor{
+            width: 100%;
+            height: auto;
+            border:10px solid #004499;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="content">
+        <div id="_bor">
+            <h1 id="_con">THERE IS NOTHING FOR YOU.</h1>
+            <h1 id="_be"style="display: none;">BECAUSE</h1>
+        </div>
+    </div>
+</body>
+<script>
+    $(function(){
+        var w_height = $(window).height();
+        console.log(w_height)
+        $("#content").css("height",w_height);
+    })
+</script>
+</html>
