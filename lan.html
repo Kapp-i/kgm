@@ -107,10 +107,29 @@
            font-size: 18px;
            text-align: center;
         }
+        .conts{
+            display: block;
+            margin: 0px auto;
+            background-color: #fff;
+            width: 1200px;
+            height: auto;
+            min-height: 1200px;
+            clear: both;
+            border: none;
+            /* margin-left: 250px; */
+        }
+        .clearfix:after {  
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;  
+        }   
+        .clearfix {*zoom: 1;}
     </style>
 </head>
 <body>
-    <div class="lan">
+    <div class="lan clearfix">
         <ul class="lan-change" style="overflow: auto;">
             <li title="Write once run anywhere"><a href="">java</a></li>
             <li title="Life is short, use Python."><a href="">python</a></li>
@@ -120,6 +139,9 @@
             <li title="abaaba..."><a href="">html</a></li>
         </ul>
     </div>
+    <iframe class="conts" src="./prolan/java/err.html">
+        <!-- 网页内容 -->
+    </iframe>
     <div class="win" style="display: none;">
         <div class="win-line" >
             <p class="err-con">请求失效，将在（5）S后跳转到原网页</p>
@@ -151,6 +173,17 @@
     $(function(){
         $(".btn-jump").click(function(){
             window.history.back(-1);
+        })
+
+        $(".lan-change li a").mouseover(function(){
+            var name = $(this).text();
+            console.log(name)
+            if(name != "css" && name != "html"){
+                $(".conts").attr("src","./prolan/"+name+"/err.html")
+            }else{
+                $(".conts").attr("src","./stalan/"+name+"/err.html")
+            }
+            
         })
     })
     
