@@ -11,6 +11,14 @@
         body{
             background-color: #494A5F;
         }
+        .windows{
+            width: 100%;
+            height: auto;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            z-index: 99;
+        }
         .win{
             position: relative;
             display: block;
@@ -23,6 +31,7 @@
             background-color: #000;
             border-radius: 3px;
             font-size: 0px;
+            z-index: 100;
         }
         .win-line{
             display: block;
@@ -41,7 +50,6 @@
             line-height: 36px;
             font-size: 16px;
             width: 100%;
-            /* background: red; */
             text-align: center;
             margin-top: 15px;
             display: inline-block;  
@@ -76,7 +84,6 @@
             height: 65px;
             width: 1190px;
             border:1px dashed #fff; 
-            /* border-style: dashed; */
             position: absolute;
             box-sizing: border-box;
             margin: 0 auto;
@@ -109,14 +116,15 @@
         }
         .conts{
             display: block;
+            position: relative;
             margin: 0px auto;
             background-color: #fff;
             width: 1200px;
             height: auto;
-            min-height: 1200px;
+            min-height: 1000px;
             clear: both;
             border: none;
-            /* margin-left: 250px; */
+            z-index: 9;
         }
         .clearfix:after {  
             content: ".";
@@ -139,14 +147,17 @@
             <li title="abaaba..."><a href="">html</a></li>
         </ul>
     </div>
+   
     <iframe class="conts" src="./prolan/java/err.html">
         <!-- 网页内容 -->
     </iframe>
-    <div class="win" style="display: none;">
-        <div class="win-line" >
-            <p class="err-con">请求失效，将在（5）S后跳转到原网页</p>
-            <div class="btn">
-                <button class="btn-jump">立即跳转</button>
+    <div class="windows" style="display:none;">
+        <div class="win" >
+            <div class="win-line" >
+                <p class="err-con">请求失效，将在（5）S后跳转到原网页</p>
+                <div class="btn">
+                    <button class="btn-jump">立即跳转</button>
+                </div>
             </div>
         </div>
     </div>
@@ -156,7 +167,7 @@
     var jump = getQueryStringRegExp("lan") === "jump" ? true : false;
 
     if(!jump){
-        var win = $(".win");
+        var win = $(".windows");
         win.show();
         var s = 4;
         setInterval(() => {
@@ -177,13 +188,11 @@
 
         $(".lan-change li a").mouseover(function(){
             var name = $(this).text();
-            console.log(name)
             if(name != "css" && name != "html"){
                 $(".conts").attr("src","./prolan/"+name+"/err.html")
             }else{
                 $(".conts").attr("src","./stalan/"+name+"/err.html")
             }
-            
         })
     })
     
