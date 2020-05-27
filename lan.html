@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kagim-lan</title>
+    <link rel="stylesheet" href="./sp/oth_css/reset.css">
+    <script src="./sp/oth_js/jquery/jquery-3.5.1.js"></script>
+    <script src="./sp/kgm_js/kgm_js.js"></script>
+    <style>
+        body{
+            background-color: #494A5F;
+        }
+        .win{
+            position: relative;
+            display: block;
+            height: 156px;
+            width: 351px;
+            padding: 0px;
+            margin: 0 auto;
+            margin-top: 250px;
+            box-sizing: border-box;
+            background-color: #000;
+            border-radius: 3px;
+            font-size: 0px;
+        }
+        .win-line{
+            display: block;
+            height: 140px;
+            width: 339px;
+            border: 1px solid #fff;
+            border-style: dashed;
+            font-size: 14px;
+            position: absolute;
+            top: 6px;
+            left: 5px;
+        }
+        .err-con{
+            margin: 0px auto;
+            height: 36px;
+            line-height: 36px;
+            font-size: 16px;
+            width: 100%;
+            /* background: red; */
+            text-align: center;
+            margin-top: 15px;
+            display: inline-block;  
+            color: #fff;
+        }
+        .btn-jump{
+            height: 36px;
+            line-height: 36px;
+            font-size: 16px;
+            border-radius: 5px;
+            width: 92%;
+            margin-left: 4%;
+            box-shadow: none;
+            border: 1px solid #fff;
+            color: #fff;
+            position: absolute;
+            bottom: 15px;
+            background-color: #000;
+        }
+        
+        .lan{
+            display: block;
+            height: 75px;
+            width: 1200px;
+            background-color: #000;
+            margin: 0px auto;
+            position: relative;
+            box-sizing: border-box;
+        }
+        .lan-change{
+            display: block;
+            height: 65px;
+            width: 1190px;
+            border:1px dashed #fff; 
+            /* border-style: dashed; */
+            position: absolute;
+            box-sizing: border-box;
+            margin: 0 auto;
+            margin-left:5px;
+            margin-top: 5px;
+            padding: 0px;
+        }
+        .lan-change li{
+            width: 198px;
+            color: #fff;
+            display: inline-block;
+            box-sizing: border-box;
+            margin: 0px;
+            float: left;
+            text-align: center;
+            border-left:  1px dashed #fff;
+            /* border-style: dashed; */
+            height: 45px;
+            line-height: 45px;
+            margin-top: 9px;
+            
+        }
+        .lan-change li:nth-of-type(1){
+            border-left: none;
+        }
+        .lan-change li a{
+           color: #fff;
+           font-size: 18px;
+           text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="lan">
+        <ul class="lan-change" style="overflow: auto;">
+            <li title="Write once run anywhere"><a href="">java</a></li>
+            <li title="Life is short, use Python."><a href="">python</a></li>
+            <li title="PHP is the best programming language in the world"><a href="">php</a></li>
+            <li title="Any application that can be written in JavaScript, will eventually be written in JavaScript."><a href="">javascript</a></li>
+            <li title="Not seeking the best, but seeking the most comprehensive"><a href="">css</a></li>
+            <li title="abaaba..."><a href="">html</a></li>
+        </ul>
+    </div>
+    <div class="win" style="display: none;">
+        <div class="win-line" >
+            <p class="err-con">请求失效，将在（5）S后跳转到原网页</p>
+            <div class="btn">
+                <button class="btn-jump">立即跳转</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    // 判断是否是从首页跳过来的
+    var jump = getQueryStringRegExp("lan") === "jump" ? true : false;
+
+    if(!jump){
+        var win = $(".win");
+        win.show();
+        var s = 4;
+        setInterval(() => {
+            if(s>=1){
+                $(".err-con").text("请求失效，将在（"+s+"）S后跳转到原网页")
+                s--
+            }else{
+                window.history.back(-1); // 返回不刷新
+            }
+            
+        }, 1000);
+    }
+
+    $(function(){
+        $(".btn-jump").click(function(){
+            window.history.back(-1);
+        })
+    })
+    
+</script>
+</html>
